@@ -1,0 +1,113 @@
+# Example Project Template
+# Make sure to edit the name, category and help document.
+Bundle-SymbolicName: org.wimi.examples.bnd.rap;singleton:=true
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+
+# 1. JUNit and Felix Shell are optional dependencies.
+# 2. Disable ALL Eclipse split package attributes, to ensure we import from the "aggregator" bundle(s).
+Import-Package: \
+	junit.framework;resolution:=optional,\
+	org.apache.felix.shell;resolution:=optional,\
+	org.eclipse.ui,\
+	org.eclipse.ui.part,\
+	org.eclipse.ui.actions,\
+	*;ui.workbench=!;common=!;registry=!;texteditor=!;text=!
+
+Include-Resource: {plugin.xml=_plugin.xml}
+
+-buildpath: \
+	org.eclipse.equinox.app,\
+	org.eclipse.equinox.app.source,\
+	org.eclipse.rap.rwt.source,\
+	org.eclipse.rap.ui.source,\
+	org.eclipse.rap.ui.workbench.source,\
+	org.eclipse.rap.rwt,\
+	org.eclipse.rap.ui,\
+	org.eclipse.rap.ui.workbench,\
+	org.eclipse.rap.jface,\
+	org.eclipse.rap.jface.source,\
+	org.eclipse.core.commands,\
+	org.eclipse.core.commands.source,\
+	org.eclipse.equinox.common,\
+	org.eclipse.equinox.common.source,\
+	org.eclipse.equinox.registry,\
+	org.eclipse.equinox.registry.source,\
+	org.eclipse.core.runtime,\
+	org.eclipse.core.runtime.source,\
+	org.eclipse.osgi,\
+	org.eclipse.osgi.source
+
+-runrequires: osgi.identity;filter:='(osgi.identity=org.wimi.examples.bnd.rap)'
+
+crossplatform.runprops: eclipse.consoleLog=,\
+	osgi.console=,\
+	osgi.console.enable.builtin=false
+
+-runproperties: ${crossplatform.runprops},\
+	osgi.ws=cocoa,\
+	osgi.arch=x86_64,\
+	osgi.os=macosx
+
+-runvm: -Declipse.ignoreApp=true\n\
+	-Dosgi.noShutdown=true\n\
+	-Dorg.eclipse.rwt.clientLibraryVariant=DEBUG\n\
+	-Dorg.eclipse.equinox.http.jetty.log.stderr.threshold=info\n\
+	-Dorg.osgi.service.http.port=9092\n\
+	-Dorg.eclipse.equinox.http.jetty.autostart=true\n\
+	-ea
+
+-runbundles: \
+	${runbundles.misc},\
+	${workspacebundles}
+
+workspacebundles: \
+	org.wimi.examples.bnd.rap
+
+runbundles.misc: \
+	org.eclipse.jetty.servlet,\
+	org.eclipse.equinox.cm,\
+	org.eclipse.core.databinding.observable,\
+	org.eclipse.equinox.common,\
+	org.eclipse.core.databinding.property,\
+	org.eclipse.equinox.http.jetty,\
+	org.eclipse.help,\
+	org.eclipse.core.jobs,\
+	org.eclipse.jetty.server,\
+	org.eclipse.equinox.ds,\
+	org.eclipse.rap.rwt.osgi,\
+	org.eclipse.jetty.io,\
+	org.eclipse.core.runtime,\
+	org.eclipse.equinox.console,\
+	org.eclipse.equinox.registry,\
+	org.eclipse.equinox.http.servletbridge,\
+	org.eclipse.core.expressions,\
+	org.apache.felix.gogo.command,\
+	org.eclipse.equinox.http.registry,\
+	org.eclipse.osgi.services,\
+	org.eclipse.equinox.util,\
+	org.eclipse.rap.ui.views,\
+	org.apache.felix.gogo.shell,\
+	org.eclipse.equinox.servletbridge,\
+	org.eclipse.equinox.app,\
+	org.eclipse.jetty.security,\
+	com.ibm.icu.base,\
+	org.eclipse.equinox.http.servlet,\
+	org.eclipse.jetty.continuation,\
+	org.eclipse.rap.jface.databinding,\
+	org.eclipse.core.databinding,\
+	org.eclipse.rap.ui,\
+	javax.xml,\
+	org.eclipse.jetty.util,\
+	org.eclipse.jetty.http,\
+	org.eclipse.equinox.preferences,\
+	org.eclipse.rap.ui.workbench,\
+	org.eclipse.rap.jface,\
+	org.eclipse.core.commands,\
+	org.eclipse.core.contenttype,\
+	org.apache.felix.gogo.runtime,\
+	org.eclipse.rap.rwt,\
+	javax.servlet
+
+Private-Package: org.wimi.examples.bnd.rap
+

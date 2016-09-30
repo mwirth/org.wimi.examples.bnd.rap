@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="mailapp.entrypoints"
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            path="/mail"
+            applicationId="org.wimi.examples.bnd.rap.mailapp"
+            id="mailapp.entrypoint">
+      </entrypoint>
+   </extension>
+   <extension
+         id="org.wimi.examples.bnd.rap.mailapp"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            thread="main"
+            cardinality="singleton-global"
+            visible="true">
+         <run
+               class="org.wimi.examples.bnd.rap.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RAP Perspective"
+            class="org.wimi.examples.bnd.rap.Perspective"
+            id="org.wimi.examples.bnd.rap.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            name="Message"
+            icon="icons/sample2.gif"
+            class="org.wimi.examples.bnd.rap.View"
+            id="org.wimi.examples.bnd.rap.view">
+      </view>
+      <view
+            name="Mailboxes"
+            icon="icons/sample3.gif"
+            class="org.wimi.examples.bnd.rap.NavigationView"
+            id="org.wimi.examples.bnd.rap.navigationView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Mail"
+            id="org.wimi.examples.bnd.rap.category">
+      </category>
+      <command
+            name="Open Mailbox"
+            description="Opens a mailbox"
+            categoryId="org.wimi.examples.bnd.rap.category"
+            id="org.wimi.examples.bnd.rap.open">
+      </command>
+      <command
+            name="Open Message Dialog"
+            description="Opens a message dialog"
+            categoryId="org.wimi.examples.bnd.rap.category"
+            id="org.wimi.examples.bnd.rap.openMessage">
+      </command>
+   </extension>
+
+</plugin>

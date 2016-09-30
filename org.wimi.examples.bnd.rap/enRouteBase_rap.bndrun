@@ -1,0 +1,78 @@
+
+-runrequires: osgi.identity;filter:='(osgi.identity=org.wimi.examples.bnd.rap)'
+
+-runbundles: \
+	${runbundles.misc},\
+	${jetty_felix.bundles},\
+	${workspacebundles}
+
+crossplatform.runprops: eclipse.consoleLog=,\
+	osgi.console=,\
+	osgi.console.enable.builtin=false
+
+-runproperties: ${crossplatform.runprops},\
+	osgi.ws=cocoa,\
+	osgi.arch=x86_64,\
+	osgi.os=macosx
+
+-runvm: -Declipse.ignoreApp=true,\
+	-Dosgi.noShutdown=true,\
+	-Dorg.eclipse.rwt.clientLibraryVariant=DEBUG,\
+	-Dorg.eclipse.equinox.http.jetty.log.stderr.threshold=info,\
+	-Dorg.osgi.service.http.port=9092,\
+	-Dorg.eclipse.equinox.http.jetty.autostart=true,\
+	-ea
+
+workspacebundles: \
+	org.wimi.examples.bnd.rap
+
+jetty_eclipse.bundles: \
+	org.eclipse.equinox.http.jetty,\
+	org.eclipse.jetty.servlet,\
+	org.eclipse.jetty.server,\
+	org.eclipse.jetty.io,\
+	org.eclipse.jetty.security,\
+	org.eclipse.jetty.continuation,\
+	org.eclipse.jetty.util,\
+	org.eclipse.jetty.http
+
+jetty_felix.bundles: \
+	org.apache.felix.http.jetty,\
+	org.apache.felix.http.api
+
+runbundles.misc: \
+	com.ibm.icu.base,\
+	org.eclipse.equinox.cm,\
+	org.eclipse.rap.ui,\
+	org.eclipse.core.databinding.observable,\
+	org.eclipse.equinox.common,\
+	org.eclipse.core.databinding.property,\
+	org.eclipse.help,\
+	org.eclipse.core.jobs,\
+	org.eclipse.equinox.ds,\
+	org.eclipse.rap.rwt.osgi,\
+	org.eclipse.core.runtime,\
+	org.eclipse.equinox.console,\
+	org.eclipse.equinox.registry,\
+	org.eclipse.equinox.http.servletbridge,\
+	org.eclipse.core.expressions,\
+	org.apache.felix.gogo.command,\
+	org.eclipse.equinox.http.registry,\
+	org.eclipse.equinox.http.servlet,\
+	org.eclipse.osgi.services,\
+	org.eclipse.equinox.util,\
+	org.eclipse.rap.ui.views,\
+	org.apache.felix.gogo.shell,\
+	org.eclipse.equinox.servletbridge,\
+	org.eclipse.equinox.app,\
+	org.eclipse.rap.jface.databinding,\
+	org.eclipse.core.databinding,\
+	javax.xml,\
+	org.eclipse.equinox.preferences,\
+	org.eclipse.rap.ui.workbench,\
+	org.eclipse.rap.jface,\
+	org.eclipse.core.commands,\
+	org.eclipse.core.contenttype,\
+	org.apache.felix.gogo.runtime,\
+	org.eclipse.rap.rwt,\
+	javax.servlet
